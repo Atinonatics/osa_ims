@@ -6,16 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
     public function up(): void
     {
         Schema::create('organizations', function (Blueprint $table) {
             $table->id('organization_id'); 
             $table->string('name');
             $table->string('logo');
-            $table->unsignedSmallInteger('category')->required(); 
+            $table->unsignedSmallInteger('category'); 
             $table->string('description');
             $table->string('adviser');
             $table->string('president');
@@ -27,15 +25,12 @@ return new class extends Migration
             $table->string('coa');
             $table->string('financial_report');
             $table->string('verification');
-            $table->string('created_at');
             $table->unsignedSmallInteger('created_by');
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+  
     public function down(): void
     {
         Schema::dropIfExists('organizations');
