@@ -1,0 +1,43 @@
+/* public/css/sidebar.css */
+.sidebar {
+    background-color: #09256E;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    height: 100vh;
+}
+
+.sidebar .nav-link {
+    color: white !important;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #093d7a;
+}
+
+.sidebar .dropdown-menu {
+    background-color: #09256E;
+}
+
+.sidebar .dropdown-item {
+    color: white;
+}
+
+.sidebar .dropdown-item:hover {
+    background-color: #093d7a;
+}
+
+.sidebar-divider {
+    border-top: 0.5px solid #fff;
+    margin: 0.5rem 0;
+}
+
+.main-content {
+    margin-left: calc(250px + 1rem);
+    padding: 20px;
+}
