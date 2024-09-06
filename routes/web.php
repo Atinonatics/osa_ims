@@ -11,12 +11,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('home'); 
 
-Route::get('/organizations', function () {
-    return view('auth.organizations');
-})->name('organizations');
+// Route::get('/organizations', function () {
+//     return view('auth.organizations');
+// })->name('organizations');
+
+Route::get('/organizations', [OrganizationController::class, 'index'])->name('organizations');
 
 // Route::get('/organizations', [OrganizationController::class, 'index'])->name('organizations');
-// Route::post('/organizations', [OrganizationController::class, 'store'])->name('organizations.store');
+Route::post('/organization/store', [OrganizationController::class, 'store'])->name('organization.store');
 
 
 

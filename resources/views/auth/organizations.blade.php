@@ -103,20 +103,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>SRP Organization</td>
+                                @foreach ($organizations as $organization))
+                                    <!-- <p>{{$organization}}</p> -->
+                                    <tr>
+                                    <th scope="row">{{$organization->organization_id}}</th>
+                                    <td>{{$organization->name}}</td>
                                     <td><label class="btn btn-success" for="success">Active</label></td>
-                                    <td>09/09/2022</td>
+                                    <td>{{$organization->created_at}}</td>
                                     <td><label class=text-primary>View</label></td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>FCU Sentinels</td>
-                                    <td><label class="btn btn-success" for="success">Active</label></td>
-                                    <td>09/03/2022</td>
-                                    <td><label class=text-primary>View</label></td>
-                                </tr>
+                                @endforeach
+                                
                             </tbody>
                         </table>
                     </div>
@@ -135,33 +132,32 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form>
+                                        <form method="post" action="{{route('organization.store')}}">
+                                           @csrf()
                                             <div class="mb-3">
                                                 <label for="formGroupExampleInput" class="form-label"><b>Organization
                                                         Name</b></label>
-                                                <input type="text" class="form-control" id="formGroupExampleInput"
-                                                    placeholder="Insert Organization Name">
+                                                <input type="text" class="form-control" id="formGroupExampleInput" name="name">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="formGroupExampleInput2" class="form-label"><b>Date
                                                         Established</b></label>
-                                                <input type="Date" class="form-control" id="formGroupExampleInput2"
-                                                    placeholder="Established">
+                                                <input type="Date" class="form-control" id="formGroupExampleInput2" name="date_established">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="formGroupExampleInput2" class="form-label"><b>Department</b></label>
-                                                <select id="inputState" class="form-select">
+                                                <select id="inputState" class="form-select" name="department">
                                                     <option selected>N/A</option>
-                                                    <option>CCS</option>
-                                                    <option>CCJE</option>
-                                                    <option>CHTM</option>
-                                                    <option>CN</option>
-                                                    <option>CBA</option>
-                                                    <option>CTE</option>
+                                                    <option value="1">CCS</option>
+                                                    <option value="2">CCJE</option>
+                                                    <option value="3">CHTM</option>
+                                                    <option value="4">CN</option>
+                                                    <option value="5">CBA</option>
+                                                    <option value="6">CTE</option>
                                                 </select>
                                                 <div class="col-12">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                        <input class="form-check-input" type="checkbox" id="gridCheck" name="is_national">
                                                         <label class="form-check-label" for="gridCheck">
                                                             <b>National</b>
                                                         </label>
@@ -173,26 +169,28 @@
                                                 <input type="file" id="file" name="file" class="form-control">
                                             </div>
                                             <label for="Status"><b>Status</b></label>
-                                            <div><input type="radio" class="btn-check" name="options-outlined"
+                                            <div>
+                                                <input type="radio" class="btn-check" id="success-outlined" name="status"
                                                     id="success-outlined" autocomplete="off" checked>
                                                 <label class="btn btn-outline-success" for="success-outlined">Active</label>
 
-                                                <input type="radio" class="btn-check" name="options-outlined"
+                                                <input type="radio" class="btn-check" id="danger-outlined" name="status"
                                                     id="danger-outlined" autocomplete="off">
                                                 <label class="btn btn-outline-danger" for="danger-outlined">Inactive</label>
                                             </div>
                                             <div>
                                                 <div class="form-floating">
-                                                    <textarea class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 100px"></textarea>
+                                                    <textarea class="form-control" name="description" placeholder="Description" id="floatingTextarea2" style="height: 100px"></textarea>
                                                     <label for="floatingTextarea2">Description</label>
                                                 </div>
                                             </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">SAVE</button>
+                                            </div>
                                         </form>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">SAVE</button>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -260,7 +258,7 @@
                             <div class="modal-body">
                                 <!-- Commented out form action and method since no controller or route -->
                                 <!--
-                                <form action="{{ route('organizations.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('organizations') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                 -->
                                     <div class="mb-3">
